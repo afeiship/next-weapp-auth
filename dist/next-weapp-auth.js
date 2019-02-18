@@ -6,22 +6,22 @@
 
   var NxWeappAuth = nx.declare('nx.WeappAuth', {
     statics: {
-      auth: function(inOptions) {
+      auth: function() {
         var self = this;
         return new Promise(function(resolve) {
           self.checkSession().then(function(response) {
             var code = response.code;
             if (code !== 0) {
-              self.login(inOptions).then(function(response) {
+              self.login().then(function(response) {
                 resolve(response);
               });
             }
           });
         });
       },
-      login: function(inOptions) {
+      login: function() {
         return new Promise(function(resolve, reject) {
-          var options = nx.mix(nxWxPromisify(resolve, reject), inOptions);
+          var options = nxWxPromisify(resolve, reject);
           wx.login(options);
         });
       },
