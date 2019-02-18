@@ -6,6 +6,7 @@
 
   var NxWeappAuth = nx.declare('nx.WeappAuth', {
     statics: {
+      // todo: has bug?
       auth: function() {
         var self = this;
         return new Promise(function(resolve) {
